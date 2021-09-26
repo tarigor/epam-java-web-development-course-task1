@@ -4,10 +4,15 @@ import by.epam.homeElectricalDevices.command.BaseCommand;
 import by.epam.homeElectricalDevices.command.Command;
 import by.epam.homeElectricalDevices.constants.Location;
 
-public class FindDeviceByPowerLocalizationEnergizingCommand  extends BaseCommand implements Command {
-    private int power;
-    private Location location;
-    private boolean energizing;
+/**
+ * Class responsible for command execution - find device by power , localization,energizing state parameters
+ *
+ * @author Igor Taren
+ */
+public class FindDeviceByPowerLocalizationEnergizingCommand extends BaseCommand implements Command {
+    private final int power;
+    private final Location location;
+    private final boolean energizing;
 
     public FindDeviceByPowerLocalizationEnergizingCommand(int power, Location location, boolean energizing) {
         this.power = power;
@@ -17,6 +22,11 @@ public class FindDeviceByPowerLocalizationEnergizingCommand  extends BaseCommand
 
     @Override
     public void execute() {
+        System.out.println(this.toString());
+    }
 
+    @Override
+    public String toString() {
+        return "FindDeviceByPowerLocalizationEnergizingCommand";
     }
 }

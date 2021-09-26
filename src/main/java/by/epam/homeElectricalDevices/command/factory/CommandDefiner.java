@@ -5,10 +5,15 @@ import by.epam.homeElectricalDevices.command.impl.*;
 import by.epam.homeElectricalDevices.service.MenuService;
 import by.epam.homeElectricalDevices.service.factory.ServiceFactory;
 
+/**
+ * The class is defined certain of election made on menu.
+ * Implemented based on singleton pattern
+ * @author Igor Taren
+ */
 public class CommandDefiner {
     private static final CommandDefiner instance = new CommandDefiner();
+    private final MenuService menuService = ServiceFactory.getInstance().getMenuService();
     private Command command;
-    private MenuService menuService = ServiceFactory.getInstance().getMenuService();
 
     public CommandDefiner() {
     }
@@ -17,6 +22,12 @@ public class CommandDefiner {
         return instance;
     }
 
+    /**
+     * Method defines the certain commands depends from menu selection
+     *
+     * @param commandId selected id from menu
+     * @return certain instance of command depends from menu selection
+     */
     public Command getCommand(String commandId) {
         switch (commandId) {
             case ("1"):
@@ -37,16 +48,16 @@ public class CommandDefiner {
             case ("6"):
                 command = new FindDeviceByPowerLocalizationCommand(
                         menuService.requestForPowerInput(),
-                        menuService.requestForLocationInput());
+                        menuService.requestForLocationSelection());
                 break;
             case ("7"):
                 command = new FindDeviceByPowerLocalizationEnergizingCommand(
                         menuService.requestForPowerInput(),
-                        menuService.requestForLocationInput(),
+                        menuService.requestForLocationSelection(),
                         menuService.requestForEnergizing());
                 break;
             default:
-                System.out.println("There is not such a command " + commandId + " , try again");
+                command = new UndefinedCommand();
         }
         return command;
     }

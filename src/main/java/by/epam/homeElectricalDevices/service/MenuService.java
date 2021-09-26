@@ -1,10 +1,14 @@
 package by.epam.homeElectricalDevices.service;
 
+import by.epam.homeElectricalDevices.command.factory.CommandDefiner;
 import by.epam.homeElectricalDevices.constants.Location;
 import by.epam.homeElectricalDevices.service.factory.ServiceFactory;
 
 import java.io.InputStream;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Properties;
+import java.util.Scanner;
 
 /**
  * Service of menu activity
@@ -22,6 +26,10 @@ public class MenuService {
     public MenuService() {
         scanner = new Scanner(System.in);
         menuHierarchy = new HashMap<>();
+    }
+
+    public String getSelectedOption() {
+        return selectedOption;
     }
 
     /**
@@ -63,11 +71,10 @@ public class MenuService {
      *
      * @return inputted option.
      */
-    public String optionSelection() {
+    public CommandDefiner optionSelection() {
         printToConsole("Input a number of the desired option:");
         selectedOption = scanner.next();
-        printToConsole("selected option->" + selectedOption);
-        return selectedOption;
+        return CommandDefiner.getInstance();
     }
 
     /**
@@ -79,14 +86,29 @@ public class MenuService {
         System.out.println(text);
     }
 
+    /**
+     * Method provides dialog input of power selection
+     *
+     * @return selected power
+     */
     public int requestForPowerInput() {
         return 0;
     }
 
-    public Location requestForLocationInput() {
+    /**
+     * Method provides dialog selection of the devices localization in a house
+     *
+     * @return selected room space
+     */
+    public Location requestForLocationSelection() {
         return Location.BAD_ROOM;
     }
 
+    /**
+     * Method provides to define of energized state of the device
+     *
+     * @return energized state
+     */
     public boolean requestForEnergizing() {
         return false;
     }

@@ -33,7 +33,9 @@ public class MenuRunner {
                     .getMenu()
                     .storeMenuToMap()
                     .printMenu()
-                    .optionSelection();
+                    .optionSelection()
+                    .getCommand(ServiceFactory.getInstance().getMenuService().getSelectedOption())
+                    .execute();
         }
     }
 }

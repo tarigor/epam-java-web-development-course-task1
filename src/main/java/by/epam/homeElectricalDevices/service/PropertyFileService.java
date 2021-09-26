@@ -9,11 +9,11 @@ import java.util.Properties;
  *
  * @author Igor Taren
  */
-public class PropertyService {
+public class PropertyFileService {
     private final Properties properties;
     private InputStream inputStream;
 
-    public PropertyService() {
+    public PropertyFileService() {
         properties = new Properties();
     }
 
