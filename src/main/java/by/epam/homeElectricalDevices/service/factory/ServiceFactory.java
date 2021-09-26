@@ -1,5 +1,6 @@
 package by.epam.homeElectricalDevices.service.factory;
 
+import by.epam.homeElectricalDevices.service.JsonFileService;
 import by.epam.homeElectricalDevices.service.MenuService;
 import by.epam.homeElectricalDevices.service.PropertyService;
 
@@ -14,10 +15,12 @@ public class ServiceFactory {
     private static final ServiceFactory instance = new ServiceFactory();
     private final MenuService menuService;
     private final PropertyService propertyService;
+    private final JsonFileService jsonFileService;
 
     private ServiceFactory() {
         menuService = new MenuService();
         propertyService = new PropertyService();
+        jsonFileService = new JsonFileService();
     }
 
     /**
@@ -39,5 +42,9 @@ public class ServiceFactory {
      */
     public PropertyService getPropertyService() {
         return propertyService;
+    }
+
+    public JsonFileService getJsonFileService() {
+        return jsonFileService;
     }
 }

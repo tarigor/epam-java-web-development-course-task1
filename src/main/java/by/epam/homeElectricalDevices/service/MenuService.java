@@ -1,12 +1,10 @@
 package by.epam.homeElectricalDevices.service;
 
+import by.epam.homeElectricalDevices.constants.Location;
 import by.epam.homeElectricalDevices.service.factory.ServiceFactory;
 
 import java.io.InputStream;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Properties;
-import java.util.Scanner;
+import java.util.*;
 
 /**
  * Service of menu activity
@@ -79,5 +77,17 @@ public class MenuService {
      */
     private void printToConsole(String text) {
         System.out.println(text);
+    }
+
+    public int requestForPowerInput() {
+        return 0;
+    }
+
+    public Location requestForLocationInput() {
+        return Location.BAD_ROOM;
+    }
+
+    public boolean requestForEnergizing() {
+        return false;
     }
 }
