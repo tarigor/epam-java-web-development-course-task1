@@ -9,7 +9,8 @@ public enum Location {
     KITCHEN("Kitchen"),
     HALL("Hall"),
     LIVING_ROOM("Living room"),
-    BAD_ROOM("Bad room");
+    BED_ROOM("Bed room"),
+    CABINET("Cabinet");
 
     private final String roomName;
 
@@ -24,5 +25,12 @@ public enum Location {
 
     public String getRoomName() {
         return roomName;
+    }
+
+    @Override
+    public String toString() {
+        return "Location{" +
+                "roomName='" + roomName + '\'' +
+                '}';
     }
 }

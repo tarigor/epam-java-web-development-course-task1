@@ -78,38 +78,91 @@ public class MenuService {
     }
 
     /**
+     * Method provides dialog input of power selection
+     * and validation of inputting
+     *
+     * @return selected power
+     */
+    public int requestForPowerInput() {
+        int powerEntered = 0;
+        boolean inputIsWrong = true;
+        while (inputIsWrong) {
+            try {
+                printToConsole("Enter the power value to search for a device close to it");
+                powerEntered = scanner.nextInt();
+            } catch (Exception e) {
+                printToConsole("Input is wrong please type an integer type!!!");
+                scanner.next();
+                continue;
+            }
+            inputIsWrong = false;
+        }
+        return powerEntered;
+    }
+
+    /**
+     * Method provides dialog selection of the devices localization in a house
+     * and validation of inputting
+     *
+     * @return selected room space
+     */
+    public Location requestForLocationSelection() {
+        int selectedLocationId = 0;
+        boolean inputIsWrong = true;
+        while (inputIsWrong) {
+            try {
+                printToConsole("Select the device location fromm the list bellow");
+                for (int i = 0; i < Location.values().length; i++) {
+                    printToConsole((i + 1) + ". " + Location.values()[i].name());
+                }
+                printToConsole("enter an ID of Location from 1 to " + Location.values().length);
+                selectedLocationId = scanner.nextInt();
+            } catch (Exception e) {
+                printToConsole("Input is wrong please type an integer type!!!");
+                scanner.next();
+                continue;
+            }
+            if (selectedLocationId > Location.values().length) {
+                printToConsole("Please enter a number within a range (0-" + Location.values().length + ")");
+            }
+            inputIsWrong = false;
+        }
+        return Location.values()[selectedLocationId - 1];
+    }
+
+    /**
+     * Method provides to define of energized state of the device
+     * and validation of inputting
+     *
+     * @return energized state
+     */
+    public boolean requestForEnergizing() {
+        boolean answer = false;
+        boolean doWhileCycle = true;
+        while (doWhileCycle) {
+            printToConsole("Does the device should be energized? Enter y or n");
+            switch (scanner.next()) {
+                case ("y"):
+                    answer = true;
+                    break;
+                case ("n"):
+                    answer = false;
+                    break;
+                default:
+                    printToConsole("Please answer y(Y) or n(N), try again...");
+                    continue;
+            }
+            doWhileCycle = false;
+        }
+        return answer;
+    }
+
+    /**
      * Method provides text printing in the console.
      *
      * @param text desired text for input.
      */
     private void printToConsole(String text) {
         System.out.println(text);
-    }
-
-    /**
-     * Method provides dialog input of power selection
-     *
-     * @return selected power
-     */
-    public int requestForPowerInput() {
-        return 0;
-    }
-
-    /**
-     * Method provides dialog selection of the devices localization in a house
-     *
-     * @return selected room space
-     */
-    public Location requestForLocationSelection() {
-        return Location.BAD_ROOM;
-    }
-
-    /**
-     * Method provides to define of energized state of the device
-     *
-     * @return energized state
-     */
-    public boolean requestForEnergizing() {
-        return false;
     }
 }

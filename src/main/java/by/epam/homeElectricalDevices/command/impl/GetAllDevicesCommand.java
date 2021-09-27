@@ -3,6 +3,8 @@ package by.epam.homeElectricalDevices.command.impl;
 import by.epam.homeElectricalDevices.command.BaseCommand;
 import by.epam.homeElectricalDevices.command.Command;
 
+import java.util.Map;
+
 /**
  * Class responsible for command execution - list all devices in a house
  *
@@ -11,7 +13,9 @@ import by.epam.homeElectricalDevices.command.Command;
 public class GetAllDevicesCommand extends BaseCommand implements Command {
     @Override
     public void execute() {
-        System.out.println(this.toString());
+        for (Map.Entry entry : deviceHashMap.entrySet()) {
+            System.out.println(entry.getKey() + " " + entry.getValue());
+        }
     }
 
     @Override

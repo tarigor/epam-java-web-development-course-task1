@@ -29,6 +29,7 @@ public class MenuRunner {
      */
     public void doMenuCycle() {
         while (true) {
+            System.out.println("----------------------");
             menuService
                     .getMenu()
                     .storeMenuToMap()

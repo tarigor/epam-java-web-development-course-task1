@@ -20,6 +20,8 @@ public class FindDeviceByPowerLocalizationCommand extends BaseCommand implements
 
     @Override
     public void execute() {
+        System.out.println("Selected power -> " + power);
+        System.out.println("Selected Location -> " + location.name());
         System.out.println(this.toString());
     }
 

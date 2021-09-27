@@ -1,9 +1,11 @@
 package by.epam.homeElectricalDevices.command;
 
+import by.epam.homeElectricalDevices.entity.Device;
 import by.epam.homeElectricalDevices.service.factory.ServiceFactory;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 
 public abstract class BaseCommand {
-    protected ArrayList<Command> listOfCommand = ServiceFactory.getInstance().getJsonFileService().getListOfDevicesFromJsonFile();
+    protected HashMap<String, Device> deviceHashMap = ServiceFactory.getInstance().getJsonFileService().getListOfDevicesFromJsonFile();
+    // protected ArrayList<Device> deviceList = ServiceFactory.getInstance().getJsonFileService().getListOfDevicesFromJsonFile();
 }

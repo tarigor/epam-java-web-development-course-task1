@@ -8,6 +8,7 @@ import by.epam.homeElectricalDevices.service.factory.ServiceFactory;
 /**
  * The class is defined certain of election made on menu.
  * Implemented based on singleton pattern
+ *
  * @author Igor Taren
  */
 public class CommandDefiner {

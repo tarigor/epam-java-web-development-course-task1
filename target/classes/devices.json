@@ -1,0 +1,9 @@
+{
+"1":{"deviceName":"iron","location":"BED_ROOM","powerConsumption":"1300","energized":"false"},
+"2":{"deviceName":"kettle","location":"KITCHEN","powerConsumption":"1600","energized":"false"},
+"3":{"deviceName":"vacuum cleaner","location":"HALL","powerConsumption":"2300","energized":"false"},
+"4":{"deviceName":"computer","location":"CABINET","powerConsumption":"3300","energized":"true"},
+"5":{"deviceName":"printer","location":"CABINET","powerConsumption":"1100","energized":"true"},
+"6":{"deviceName":"heater","location":"LIVING_ROOM","powerConsumption":"2000","energized":"false"}
+}
+	

@@ -17,6 +17,7 @@ public class FindDeviceByPowerCommand extends BaseCommand implements Command {
 
     @Override
     public void execute() {
+        System.out.println("Selected power is => " + power);
         System.out.println(this.toString());
     }
 
