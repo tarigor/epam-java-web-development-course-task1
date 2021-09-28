@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 
 /**
  * Class responsible for command execution - devices sort by power consumption
- * was learned how to do such a lambda expression following this link :) -> https://stackoverflow.com/questions/780541/how-to-sort-a-hashmap-in-java
+ * was learned how to do such a magic lambda expression following this link :) -> https://stackoverflow.com/questions/780541/how-to-sort-a-hashmap-in-java
  *
  * @author Igor Taren
  */
@@ -26,14 +26,8 @@ public class DeviceSortCommand extends BaseCommand implements Command {
                         sorted(valueComparator).
                         collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,
                                 (e1, e2) -> e1, LinkedHashMap::new));
-
         for (Map.Entry entry : sortedMap.entrySet()) {
             System.out.println(entry.getKey() + ". " + entry.getValue());
         }
-    }
-
-    @Override
-    public String toString() {
-        return "DeviceSortCommand";
     }
 }

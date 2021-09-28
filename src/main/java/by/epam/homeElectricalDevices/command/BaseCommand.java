@@ -7,5 +7,4 @@ import java.util.HashMap;
 
 public abstract class BaseCommand {
     protected HashMap<String, Device> deviceHashMap = ServiceFactory.getInstance().getJsonFileService().getListOfDevicesFromJsonFile();
-    // protected ArrayList<Device> deviceList = ServiceFactory.getInstance().getJsonFileService().getListOfDevicesFromJsonFile();
 }

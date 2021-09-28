@@ -48,14 +48,14 @@ public class CommandDefiner {
                 break;
             case ("6"):
                 command = new FindDeviceByPowerLocalizationCommand(
-                        menuService.requestForPowerInput(),
-                        menuService.requestForLocationSelection());
+                        menuService.requestForLocationSelection(),
+                        menuService.requestForPowerInput());
                 break;
             case ("7"):
                 command = new FindDeviceByPowerLocalizationEnergizingCommand(
-                        menuService.requestForPowerInput(),
                         menuService.requestForLocationSelection(),
-                        menuService.requestForEnergizing());
+                        menuService.requestForEnergizing(),
+                        menuService.requestForPowerInput());
                 break;
             default:
                 command = new UndefinedCommand();
