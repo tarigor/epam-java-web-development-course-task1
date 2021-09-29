@@ -36,4 +36,9 @@ public class FindDeviceByPowerLocalizationCommand extends BaseCommand implements
             System.out.println("It was not found any device match requested parameters");
         }
     }
+
+    @Override
+    public String toString() {
+        return "FindDeviceByPowerLocalizationCommand";
+    }
 }

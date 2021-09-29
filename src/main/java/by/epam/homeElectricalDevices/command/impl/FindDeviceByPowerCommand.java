@@ -23,4 +23,9 @@ public class FindDeviceByPowerCommand extends BaseCommand implements Command {
                 ServiceFactory.getInstance().getCommandService()
                         .findByPower(deviceHashMap, power).getDeviceWithClosestPower().toString());
     }
+
+    @Override
+    public String toString() {
+        return "FindDeviceByPowerCommand";
+    }
 }

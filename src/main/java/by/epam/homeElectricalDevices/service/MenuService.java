@@ -3,6 +3,7 @@ package by.epam.homeElectricalDevices.service;
 import by.epam.homeElectricalDevices.command.factory.CommandDefiner;
 import by.epam.homeElectricalDevices.constants.Location;
 import by.epam.homeElectricalDevices.service.factory.ServiceFactory;
+import org.apache.log4j.Logger;
 
 import java.io.InputStream;
 import java.util.HashMap;
@@ -16,12 +17,14 @@ import java.util.Scanner;
  * @author Igor Taren
  */
 public class MenuService {
+    private final Logger log = Logger.getLogger(MenuService.class);
     private final Scanner scanner;
     private final String MENU_FILE_PROPERTIES = "menu.properties";
     private final HashMap<String, String> menuHierarchy;
     private Properties properties;
     private InputStream inputStream;
     private String selectedOption;
+    private String selectedId;
 
     public MenuService() {
         scanner = new Scanner(System.in);
@@ -91,7 +94,7 @@ public class MenuService {
                 printToConsole("Enter the power value to search for a device close to it");
                 powerEntered = scanner.nextInt();
             } catch (Exception e) {
-                printToConsole("Input is wrong please type an integer type!!!");
+                log.error("Input is wrong please type an integer type!!!",e);
                 scanner.next();
                 continue;
             }
@@ -118,7 +121,7 @@ public class MenuService {
                 printToConsole("enter an ID of Location from 1 to " + Location.values().length);
                 selectedLocationId = scanner.nextInt();
             } catch (Exception e) {
-                printToConsole("Input is wrong please type an integer type!!!");
+                log.error("Input is wrong please type an integer type!!!",e);
                 scanner.next();
                 continue;
             }
@@ -131,7 +134,7 @@ public class MenuService {
     }
 
     /**
-     * Method provides to define of energized state of the device
+     * Method provides a definition of energized state of the device
      * and validation of inputting
      *
      * @return energized state
@@ -155,6 +158,28 @@ public class MenuService {
             doWhileCycle = false;
         }
         return answer;
+    }
+
+    /**
+     * Methods provides the requesting dialog of the desired device ID
+     *
+     * @return selected ID
+     */
+    public String requestForId() {
+        String selectedId = "";
+        boolean doWhileCycle = true;
+        while (doWhileCycle) {
+            ServiceFactory.getInstance().getCommandService().getAllDevices(ServiceFactory.getInstance().getJsonFileService().getListOfDevicesFromJsonFile());
+            printToConsole("Input an ID of the device listed above:");
+            selectedId = scanner.next();
+            if (ServiceFactory.getInstance().getJsonFileService().getListOfDevicesFromJsonFile().containsKey(selectedId)) {
+                return selectedId;
+            } else {
+                printToConsole("There is now such id, try again");
+                continue;
+            }
+        }
+        return selectedId;
     }
 
     /**

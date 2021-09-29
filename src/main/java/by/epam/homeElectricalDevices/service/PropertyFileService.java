@@ -1,5 +1,7 @@
 package by.epam.homeElectricalDevices.service;
 
+import org.apache.log4j.Logger;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
@@ -10,6 +12,7 @@ import java.util.Properties;
  * @author Igor Taren
  */
 public class PropertyFileService {
+    private final Logger log = Logger.getLogger(PropertyFileService.class);
     private final Properties properties;
     private InputStream inputStream;
 
@@ -31,12 +34,13 @@ public class PropertyFileService {
                 inputStream.close();
             }
         } catch (Exception e) {
-            System.out.println("Exception: " + e);
+            log.error("Exception: " + e);
         } finally {
             if (inputStream != null) {
                 try {
                     inputStream.close();
                 } catch (IOException e) {
+                    log.error("Exception: " + e);
                     e.printStackTrace();
                 }
             }

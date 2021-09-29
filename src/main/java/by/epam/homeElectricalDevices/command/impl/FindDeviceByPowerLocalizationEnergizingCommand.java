@@ -29,7 +29,7 @@ public class FindDeviceByPowerLocalizationEnergizingCommand extends BaseCommand 
 
         ServiceFactory.getInstance().getCommandService()
                 .sortByLocation(deviceHashMap, location)
-                .sortByEnergizing(ServiceFactory.getInstance().getCommandService().getDeviceMapsSortedByLocation(), energizing)
+                .filterByEnergizing(ServiceFactory.getInstance().getCommandService().getDeviceMapsSortedByLocation(), energizing)
                 .findByPower(ServiceFactory.getInstance().getCommandService().getDeviceMapsSortedByEnergizing(), power);
 
         if (ServiceFactory.getInstance().getCommandService().getDeviceWithClosestPower().getDeviceName() != null) {
@@ -38,5 +38,10 @@ public class FindDeviceByPowerLocalizationEnergizingCommand extends BaseCommand 
         } else {
             System.out.println("It was not found any device match requested parameters");
         }
+    }
+
+    @Override
+    public String toString() {
+        return "FindDeviceByPowerLocalizationEnergizingCommand";
     }
 }

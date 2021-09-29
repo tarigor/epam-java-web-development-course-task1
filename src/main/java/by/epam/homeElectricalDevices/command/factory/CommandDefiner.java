@@ -4,6 +4,7 @@ import by.epam.homeElectricalDevices.command.Command;
 import by.epam.homeElectricalDevices.command.impl.*;
 import by.epam.homeElectricalDevices.service.MenuService;
 import by.epam.homeElectricalDevices.service.factory.ServiceFactory;
+import org.apache.log4j.Logger;
 
 /**
  * The class is defined certain of election made on menu.
@@ -12,6 +13,7 @@ import by.epam.homeElectricalDevices.service.factory.ServiceFactory;
  * @author Igor Taren
  */
 public class CommandDefiner {
+    private static final Logger log = Logger.getLogger(CommandDefiner.class);
     private static final CommandDefiner instance = new CommandDefiner();
     private final MenuService menuService = ServiceFactory.getInstance().getMenuService();
     private Command command;
@@ -35,7 +37,7 @@ public class CommandDefiner {
                 command = new GetAllDevicesCommand();
                 break;
             case ("2"):
-                command = new PlugInDeviceCommand();
+                command = new PlugInDeviceCommand(menuService.requestForId());
                 break;
             case ("3"):
                 command = new PowerCalculationCommand();
@@ -60,6 +62,7 @@ public class CommandDefiner {
             default:
                 command = new UndefinedCommand();
         }
+        log.info(command.toString() + " selected");
         return command;
     }
 }
