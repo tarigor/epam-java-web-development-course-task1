@@ -13,9 +13,10 @@ import java.util.stream.Collectors;
 /**
  * Class responsible for command execution - devices sort by power consumption
  * was learned how to do such a magic lambda expression following this link :) https://stackoverflow.com/questions/780541/how-to-sort-a-hashmap-in-java
+ *
  * @author Igor Taren
  */
-public class DeviceSortCommand extends BaseCommand implements Command {
+public class DeviceSortByPowerCommand extends BaseCommand implements Command {
     @Override
     public void execute() {
         Comparator<HashMap.Entry<String, Device>> valueComparator =

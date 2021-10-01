@@ -1,6 +1,5 @@
 package by.epam.homeElectricalDevices.command;
 
-import by.epam.homeElectricalDevices.command.factory.CommandDefiner;
 import by.epam.homeElectricalDevices.entity.Device;
 import by.epam.homeElectricalDevices.service.factory.ServiceFactory;
 import org.apache.log4j.Logger;

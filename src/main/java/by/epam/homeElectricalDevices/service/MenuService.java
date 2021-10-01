@@ -20,7 +20,7 @@ public class MenuService {
     private final Logger log = Logger.getLogger(MenuService.class);
     private final Scanner scanner;
     private final String MENU_FILE_PROPERTIES = "menu.properties";
-    private final HashMap<String, String> menuHierarchy;
+    private HashMap<String, String> menuHierarchy;
     private Properties properties;
     private InputStream inputStream;
     private String selectedOption;
@@ -33,6 +33,14 @@ public class MenuService {
 
     public String getSelectedOption() {
         return selectedOption;
+    }
+
+    public void setProperties(Properties properties) {
+        this.properties = properties;
+    }
+
+    public void setMenuHierarchy(HashMap<String, String> menuHierarchy) {
+        this.menuHierarchy = menuHierarchy;
     }
 
     /**
@@ -53,7 +61,7 @@ public class MenuService {
      * @return instance of Menu Service with initialized properties field provides builder pattern.
      */
     public MenuService getMenu() {
-        this.properties = ServiceFactory.getInstance().getPropertyService().readFromPropertyFile(MENU_FILE_PROPERTIES);
+        this.setProperties(ServiceFactory.getInstance().getPropertyService().readFromPropertyFile(MENU_FILE_PROPERTIES));
         return this;
     }
 
@@ -94,7 +102,7 @@ public class MenuService {
                 printToConsole("Enter the power value to search for a device close to it");
                 powerEntered = scanner.nextInt();
             } catch (Exception e) {
-                log.error("Input is wrong please type an integer type!!!",e);
+                log.error("Input is wrong please type an integer type!!!", e);
                 scanner.next();
                 continue;
             }
@@ -121,7 +129,7 @@ public class MenuService {
                 printToConsole("enter an ID of Location from 1 to " + Location.values().length);
                 selectedLocationId = scanner.nextInt();
             } catch (Exception e) {
-                log.error("Input is wrong please type an integer type!!!",e);
+                log.error("Input is wrong please type an integer type!!!", e);
                 scanner.next();
                 continue;
             }

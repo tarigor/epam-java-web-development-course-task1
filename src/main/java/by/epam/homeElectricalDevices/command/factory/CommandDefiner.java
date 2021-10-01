@@ -43,7 +43,7 @@ public class CommandDefiner {
                 command = new PowerCalculationCommand();
                 break;
             case ("4"):
-                command = new DeviceSortCommand();
+                command = new DeviceSortByPowerCommand();
                 break;
             case ("5"):
                 command = new FindDeviceByPowerCommand(menuService.requestForPowerInput());

@@ -20,8 +20,7 @@ public class FindDeviceByPowerCommand extends BaseCommand implements Command {
     public void execute() {
         System.out.println("Selected power is => " + power);
         System.out.println("The nearest value of power to the selected power is for device: " +
-                ServiceFactory.getInstance().getCommandService()
-                        .findByPower(deviceHashMap, power).getDeviceWithClosestPower().toString());
+                ServiceFactory.getInstance().getCommandService().findByPower(deviceHashMap, power));
     }
 
     @Override

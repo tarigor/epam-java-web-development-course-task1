@@ -2,6 +2,8 @@ package by.epam.homeElectricalDevices.entity;
 
 import by.epam.homeElectricalDevices.constants.Location;
 
+import java.util.Objects;
+
 /**
  * Entity represents electrical device located at home.
  *
@@ -61,6 +63,22 @@ public class Device {
 
     public void setEnergized(boolean energized) {
         this.energized = energized;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Device device = (Device) o;
+        return powerConsumption == device.powerConsumption &&
+                energized == device.energized &&
+                Objects.equals(deviceName, device.deviceName) &&
+                location == device.location;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(deviceName, location, powerConsumption, energized);
     }
 
     @Override

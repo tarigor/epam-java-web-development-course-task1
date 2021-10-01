@@ -3,7 +3,6 @@ package by.epam.homeElectricalDevices.service;
 import by.epam.homeElectricalDevices.constants.Location;
 import by.epam.homeElectricalDevices.entity.Device;
 import by.epam.homeElectricalDevices.service.factory.ServiceFactory;
-import org.apache.log4j.Logger;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -20,7 +19,7 @@ public class CommandService {
     private final HashMap<String, Device> deviceMapsSortedByLocation;
     private final HashMap<String, Device> deviceMapsSortedByEnergizing;
     private final HashMap<String, Device> deviceMapSortedById;
-    private Device deviceWithClosestPower;
+    private final Device deviceWithClosestPower;
     private Device device;
 
     public CommandService() {
@@ -57,9 +56,9 @@ public class CommandService {
      *
      * @param deviceHashMap HashMap contains the records of all devices
      * @param power         requested power
-     * @return the Device which has a closest power to the requested power
+     * @return instance of the Device with closet power to the request power
      */
-    public CommandService findByPower(HashMap<String, Device> deviceHashMap, Integer power) {
+    public Device findByPower(HashMap<String, Device> deviceHashMap, Integer power) {
         resultMap.clear();
         for (Map.Entry entry : deviceHashMap.entrySet()) {
             //iterating within whole power consumption rates of all devices and subtracting the selected power and rated power
@@ -68,10 +67,7 @@ public class CommandService {
             // key of deviceHashMap put to value
             resultMap.put(diff, ((String) entry.getKey()));
         }
-        if (!resultMap.isEmpty()) {
-            deviceWithClosestPower = deviceHashMap.get(resultMap.values().toArray()[0]);
-        }
-        return this;
+        return deviceHashMap.get(resultMap.values().toArray()[0]);
     }
 
     /**

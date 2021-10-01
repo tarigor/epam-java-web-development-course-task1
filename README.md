@@ -18,6 +18,7 @@
 - menu routine - Builder pattern
 - menu commands - Factory pattern
 - services - Factory pattern
+- factory classes (command and service) - Singleton pattern
 
 
 
