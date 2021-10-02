@@ -4,10 +4,8 @@ import by.epam.homeElectricalDevices.constants.Location;
 import by.epam.homeElectricalDevices.entity.Device;
 import by.epam.homeElectricalDevices.service.factory.ServiceFactory;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.SortedMap;
-import java.util.TreeMap;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * The class provides a business logic of all commands
@@ -88,6 +86,23 @@ public class CommandService {
             });
         }
         return this;
+    }
+
+    /**
+     * methods sort the HashMap of the devices by Power
+     * was learned how to do such a magic lambda expression following this link :) https://stackoverflow.com/questions/780541/how-to-sort-a-hashmap-in-java
+     * @param deviceHashMap HashMap contains the records of all devices
+     * @return sorted HashMap of the devices by power
+     */
+    public HashMap<String, Device> sortByPower(HashMap<String, Device> deviceHashMap) {
+        Comparator<HashMap.Entry<String, Device>> valueComparator =
+                Comparator.comparingInt(e -> e.getValue().getPowerConsumption());
+        HashMap<String, Device> sortedMap =
+                deviceHashMap.entrySet().stream().
+                        sorted(valueComparator).
+                        collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,
+                                (e1, e2) -> e1, LinkedHashMap::new));
+        return sortedMap;
     }
 
     /**

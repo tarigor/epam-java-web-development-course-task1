@@ -35,4 +35,23 @@ class CommandServiceTest {
         //THEN
         Assert.assertEquals(expectedResult, myResult);
     }
+
+    @Test
+    void testPlugInDevice() {
+        //GIVEN
+        inputHashMap.put("1", new Device("first", by.epam.homeElectricalDevices.constants.Location.BED_ROOM, 2000, false));
+
+        //THEN
+        Assert.assertEquals(commandService.plugInDevice(inputHashMap, "1").get("1").isEnergized(), true);
+
+    }
+
+    @Test
+    void testPowerCalculation() {
+        //GIVEN
+        inputHashMap.put("1", new Device("first", by.epam.homeElectricalDevices.constants.Location.BED_ROOM, 2000, true));
+        inputHashMap.put("2", new Device("second", by.epam.homeElectricalDevices.constants.Location.BED_ROOM, 3000, true));
+        //THEN
+        Assert.assertTrue(commandService.powerCalculation(inputHashMap) == 5000);
+    }
 }
